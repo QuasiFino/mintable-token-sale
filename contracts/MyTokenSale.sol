@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
-import "./Crowdsale.sol";
+import "./MintedCrowdsale.sol";
 import "./KycContract.sol";
 
-contract MyTokenSale is CrowdSale {
+contract MyTokenSale is MintedCrowdsale {
   KycContract kyc;
 
   // rate in TKNbits
@@ -13,6 +13,7 @@ contract MyTokenSale is CrowdSale {
     IERC20 token,
     KycContract _kyc
     ) 
+    MintedCrowdsale()
     CrowdSale(rate, wallet, token)
   {
     kyc = _kyc;

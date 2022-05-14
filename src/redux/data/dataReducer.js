@@ -8,6 +8,7 @@ const initialState = {
   tokenBalance: 0,
   kycCompleted: false,
   dataLoading: false,
+  totalSupply: 0,
   errMsg: ""
 };
 
@@ -23,7 +24,8 @@ const dataReducer = (state = initialState, action) => {
         ...initialState,
         dataLoading: false,
         tokenBalance: action.payload.tokenBalance,
-        kycCompleted: action.payload.kycCompleted
+        kycCompleted: action.payload.kycCompleted,
+        totalSupply: action.payload.totalSupply
       }
     case CHECK_DATA_FAILED:
       return {
