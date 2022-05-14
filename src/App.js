@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from './redux/blockchain/blockchainActions';
 import { connectBlockchain } from './redux/blockchain/blockchainActions';
 import { fetchData } from './redux/data/dataActions';
 import './App.css';
@@ -9,9 +8,8 @@ import './App.css';
 const App = (props) => {
 
   const { account, myToken, myTokenSale, kycContract, errorMsg, loading } = props.blockchain;
-  const { kycCompleted, tokenBalance } = props.data;
+  const { kycCompleted, tokenBalance, totalSupply } = props.data;
   const [kycAddress, setKycAddress] = useState("0x123");
-  const [userBalance, setUserBalance] = useState("0");
 
   const handleChange = (event) => {
     const target = event.target;
@@ -95,6 +93,7 @@ const App = (props) => {
           <div>
             <p>Send Ether to this address: {myTokenSale._address}</p>
             <p>kyc Completed: {(kycCompleted).toString()}</p>
+            <p>Total supply: {totalSupply} tokens</p>
             <p>You have: {tokenBalance} tokens</p>
             <button type='button' onClick={handleBuyTokens}>Buy one token</button>
           </div>

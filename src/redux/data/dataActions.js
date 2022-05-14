@@ -24,8 +24,11 @@ export const fetchData = (account) => async dispatch => {
       .getState()
       .blockchain.kycContract.methods.kycCompleted(account)
       .call();
-
-    dispatch(fetchDataSuccess({ tokenBalance, kycCompleted }));
+    let totalSupply = await store
+      .getState()
+      .blockchain.myToken.methods.totalSupply()
+      .call();
+    dispatch(fetchDataSuccess({ tokenBalance, kycCompleted, totalSupply }));
   } catch (err) {
     console.log(err);
     dispatch(fetchDataFailed("Could not load data from contract."));
